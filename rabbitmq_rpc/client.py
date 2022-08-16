@@ -8,7 +8,7 @@ import sys
 import logging
 
 
-logger = loggin.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class RpcClientWorker:

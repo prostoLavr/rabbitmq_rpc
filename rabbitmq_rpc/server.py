@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 import pika
 import json
-from loguru import logger
 import sys
+import logging
 
 
-logger.remove(0)
-logger.level('DEBUG')
-logger.add(sys.stdout, format='<green>{time:MM/DD HH:mm:ss.SSS}</green> | <level>{level: <8}</level> | '
-                              '<cyan>[server] {function}</cyan> - <level>{message}</level>')
+logger = logging.getLogger(__name__)
 
 
 def declare_to_receive(rabbit_url: str, queue: str, func):

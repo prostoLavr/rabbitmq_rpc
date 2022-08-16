@@ -1,13 +1,14 @@
 # rabbit_rpc
 ## RabbitMq RPC lib
 
-build:
+Build:
 ```sh
 cp path/to/lib
 python setup.py sdist bdist_wheel
 ```
 
-Install:
-```sh
-do nothing :)
+Use:
+```python3
+from rabbitmq_rpc import RpcClient  # Use on client
+from rabbitmq_rpc import declare_to_recieve  # Use on server
 ```
