@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
  
 
-requirements = ['loguru', 'pika']
+requirements = ['pika']
 
 
 setup(name='rabbitmq_rpc',
