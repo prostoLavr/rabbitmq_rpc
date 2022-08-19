@@ -1,8 +1,6 @@
 **/__pycache__/
 **/*venv/
-build/
-!build/rabbitmq_rpc/
-!build/requirements_dev.txt
-!build/setup.py
-build/  build_venv/  dist/  rabbitmq_rpc/  rabbitmq_rpc.egg-info/  README.md  requirements_dev.txt  setup.py  test_venv/
-
+building
+!building/rabbitmq_rpc/
+!building/requirements_dev.txt
+!building/setup.py
