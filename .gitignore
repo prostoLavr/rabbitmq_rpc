@@ -1,7 +1,7 @@
 **/__pycache__/
 **/*venv/
 **/.idea/
-build
-!build/rabbitmq_rpc/
-!build/requirements_dev.txt
-!build/setup.py
+project
+!project/rabbitmq_rpc/
+!project/requirements_dev.txt
+!project/setup.py

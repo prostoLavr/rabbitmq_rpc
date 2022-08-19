@@ -6,7 +6,7 @@ Setup:
 # Copy
 git clone https://github.com/prostoLavr/rabbitmq_rpc.git
 # Build
-cd rabbitmq_rpc/build
+cd rabbitmq_rpc/project
 pip3 install wheel
 python3 setup.py sdist bdist_wheel
 # Install
