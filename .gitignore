@@ -1,5 +1,6 @@
 **/__pycache__/
 **/*venv/
+**/.idea/
 building
 !building/rabbitmq_rpc/
 !building/requirements_dev.txt
