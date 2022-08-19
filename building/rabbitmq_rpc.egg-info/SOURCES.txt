@@ -1,0 +1,11 @@
+README.md
+setup.py
+rabbitmq_rpc/__init__.py
+rabbitmq_rpc/client.py
+rabbitmq_rpc/server.py
+rabbitmq_rpc.egg-info/PKG-INFO
+rabbitmq_rpc.egg-info/SOURCES.txt
+rabbitmq_rpc.egg-info/dependency_links.txt
+rabbitmq_rpc.egg-info/not-zip-safe
+rabbitmq_rpc.egg-info/requires.txt
+rabbitmq_rpc.egg-info/top_level.txt
