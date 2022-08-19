@@ -1,10 +1,16 @@
-# rabbit_rpc
+# rabbitmq_rpc
 ## RabbitMq RPC lib
 
-Build:
+Setup:
 ```sh
-cp path/to/lib
-python setup.py sdist bdist_wheel
+# Copy
+git clone https://github.com/prostoLavr/rabbitmq_rpc.git
+cd rabbitmq_rpc
+# Build
+pip3 install wheel
+python3 setup.py sdist bdist_wheel
+# Install
+pip3 install dist/rabbitmq_rpc-0.1-py3-none-any.whl
 ```
 
 Use:
