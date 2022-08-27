@@ -20,14 +20,17 @@ def declare_to_receive(rabbit_url: str, queue: str, func):
         logger.debug(f'got request: {request}')
         try:
             response = func(request)
+            if response is None:
+                response = {'success': True}
             if not isinstance(response, dict):
                 raise TypeError('Function result musts be dict')
             if 'success' not in response.keys():
                 response.update({'success': True})
+            answer = json.dumps(response)
         except Exception as e:
             logger.exception(e)
             response = {'success': False, 'error': e.__class__.__name__}
-        answer = json.dumps(response)
+            answer = json.dumps(response)
 
         logger.debug(f'send answer: {answer}')
 
