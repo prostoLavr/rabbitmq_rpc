@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import pika
 import json
-import sys
 import logging
 
 
@@ -19,9 +18,16 @@ def declare_to_receive(rabbit_url: str, queue: str, func):
     def on_request(ch, method, props, body: bytes):
         request = json.loads(body)
         logger.debug(f'got request: {request}')
-
-        response = func(request)
-        answer = json.dumps({'answer': response})
+        try:
+            response = func(request)
+            if not isinstance(response, dict):
+                raise TypeError('Function result musts be dict')
+            if 'success' not in response.keys():
+                response.update({'success': True})
+        except Exception as e:
+            logger.exception(e)
+            response = {'success': False, 'error': e.__class__.__name__}
+        answer = json.dumps(response)
 
         logger.debug(f'send answer: {answer}')
 
@@ -52,7 +58,7 @@ def example():
             return fib(n - 1) + fib(n - 2)
 
     def fib_from_request(request: dict):
-        return fib(request['value'])
+        return {'answer': fib(request['value'])}
 
     declare_to_receive(rabbit_url, queue, fib_from_request)
 
