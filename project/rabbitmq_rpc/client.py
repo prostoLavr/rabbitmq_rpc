@@ -4,7 +4,6 @@ import uuid
 import json
 import time
 from typing import Optional
-import sys
 import logging
 
 
@@ -12,11 +11,9 @@ logger = logging.getLogger(__name__)
 
 
 class RpcClientWorker:
-    def __init__(self, rabbit_url: str, to_queue: str):
+    def __init__(self, connection: pika.BlockingConnection, to_queue: str):
         self.to_queue = to_queue
-        self.connection = pika.BlockingConnection(
-            pika.URLParameters(rabbit_url))
-
+        self.connection = connection
         self.channel = self.connection.channel()
 
         result = self.channel.queue_declare(queue='', exclusive=True)
@@ -53,11 +50,12 @@ class RpcClientWorker:
 
 class RpcClient:
     def __init__(self, rabbit_url: str, to_queue: str):
-        self.rabbit_url = rabbit_url
+        self.connection = pika.BlockingConnection(
+            pika.URLParameters(rabbit_url))
         self.to_queue = to_queue
 
     def call(self, body: dict) -> Optional[dict]:
-        return RpcClientWorker(self.rabbit_url, self.to_queue).call(body)
+        return RpcClientWorker(self.connection, self.to_queue).call(body)
 
 
 def example():

@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
  
 
-requirements = ['pika', 'loguru']
+requirements = ['pika']
 
 
 setup(name='rabbitmq_rpc',
-      version='0.1.1',
+      version='0.1.2',
       url='https://github.com/prostolavr/rabbitmq_rpc',
       author='Lawrence Naumov',
       author_email='prostoLawr@gmail.com',
