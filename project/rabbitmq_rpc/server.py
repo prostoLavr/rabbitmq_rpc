@@ -4,7 +4,8 @@ import json
 import logging
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("rabbitmq")
+logger.setLevel(logging.DEBUG)
 
 
 def declare_to_receive(rabbit_url: str, queue: str, func):
@@ -34,10 +35,11 @@ def declare_to_receive(rabbit_url: str, queue: str, func):
 
         logger.debug(f'send answer: {answer}')
 
-        ch.basic_publish(exchange='',
-                         routing_key=props.reply_to,
-                         properties=pika.BasicProperties(correlation_id=props.correlation_id),
-                         body=answer)
+        ch.basic_publish(
+                exchange='',
+                routing_key=props.reply_to,
+                properties=pika.BasicProperties(correlation_id=props.correlation_id),
+                body=answer)
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
     channel.basic_qos(prefetch_count=1)
@@ -49,7 +51,8 @@ def declare_to_receive(rabbit_url: str, queue: str, func):
 
 def example():
     """Work example"""
-    rabbit_url = "amqp://guest:guest@rabbitmq/?connection_attempts=5&retry_delay=5&blocked_connection_timeout=420"
+    rabbit_url = "amqp://guest:guest@localhost/?connection_attempts=5&" \
+                 "retry_delay=5&blocked_connection_timeout=420"
     queue = 'calculate_fib'
 
     def fib(n: int):
@@ -67,4 +70,6 @@ def example():
 
 
 if __name__ == "__main__":
+    logger.info('start')
     example()
+
