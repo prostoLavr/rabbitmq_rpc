@@ -62,7 +62,7 @@ class RpcClient:
         self.to_queue = to_queue
         self.answer_queue = answer_queue
 
-    def __create_connection(rabbit_url: str):
+    def __create_connection(self, rabbit_url: str):
         while True:
             try:
                 return pika.BlockingConnection(pika.URLParameters(rabbit_url))
