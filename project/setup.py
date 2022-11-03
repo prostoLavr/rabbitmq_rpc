@@ -5,7 +5,7 @@ requirements = ['pika']
 
 
 setup(name='rabbitmq_rpc',
-      version='0.2.1',
+      version='0.2.3',
       url='https://github.com/prostolavr/rabbitmq_rpc',
       author='Lawrence Naumov',
       author_email='prostoLawr@gmail.com',
