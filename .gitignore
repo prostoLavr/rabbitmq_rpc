@@ -1,7 +1,6 @@
 **/__pycache__/
-**/*venv/
+*venv/
 **/.idea/
-project
-!project/rabbitmq_rpc/
-!project/requirements_dev.txt
-!project/setup.py
+*.egg-info
+dist
+build
