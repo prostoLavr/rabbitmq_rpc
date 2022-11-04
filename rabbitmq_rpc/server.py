@@ -1,16 +1,18 @@
-#!/usr/bin/env python
-import pika
 import json
 import logging
+from typing import Callable
+
+import pika
 
 
-logger = logging.getLogger("rabbitmq")
+logger = logging.getLogger("rabbitmq_rpc")
 logger.setLevel(logging.DEBUG)
 
 
-def declare_to_receive(rabbit_url: str, queue: str, func):
+def declare_to_receive(rabbit_url: str, queue: str, func: Callable):
     connection = pika.BlockingConnection(
-        pika.URLParameters(rabbit_url))
+        pika.URLParameters(rabbit_url)
+    )
 
     channel = connection.channel()
 
@@ -23,8 +25,8 @@ def declare_to_receive(rabbit_url: str, queue: str, func):
             response = func(request)
             if response is None:
                 response = {'success': True}
-            if not isinstance(response, dict):
-                raise TypeError('Function result musts be dict')
+            if not isinstance(response, dict | list):
+                raise TypeError('Function result musts be dict or list')
             if 'success' not in response.keys():
                 response.update({'success': True})
             answer = json.dumps(response)
